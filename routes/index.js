@@ -23,7 +23,7 @@ const routes = function (app) {
  */
 function LogErrorHandler(err,req,res,next){
   console.error(err);
-  res.status(200).send('发生错误');
+  res.status(200).send('没有找到路由,请确定URL');
 }
 
 /**
