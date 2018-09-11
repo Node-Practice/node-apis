@@ -4,8 +4,10 @@ const path = require('path');
 const cookieParser = require('cookie-parser');
 const logger = require('morgan');
 const body_parser = require('body-parser');
+const multer = require('multer');
 
 const mongoose = require('mongoose');
+mongoose.Promise = global.Promise;
 const config = require('./configs/app.settings');
 mongoose.connect(config.dbUrl,config.dbOptions)
     .then(() =>{
@@ -29,6 +31,11 @@ app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
 
 app.use(body_parser.json());
+app.use(body_parser.urlencoded({extended:true}));
+// app.use(multer());
+
+
+
 // app.use(express.static(path.join(__dirname, 'public')));
 
 // app.use('/', indexRouter);

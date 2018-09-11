@@ -1,6 +1,6 @@
 const appSettings = {
     dbUrl: "mongodb://58.87.119.60:27017/APIS",
-    environment:"PROD", // DEV or PROD
+    environment:"DEV", // DEV or PROD
 
     port: 3000,
     dbOptions : {

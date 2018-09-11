@@ -28,7 +28,7 @@ const userSchema = new Schema({
     timestamps: true // 使用timestamps会添加createdAt 和 updateAt字段
 });
 // 创建model
-var userModel = mongoose.model('userModel', userSchema);
+const userModel = mongoose.model('user', userSchema);
 // 设置options
 // 可以调用ToJson方法转换为JSON字符串
 userSchema.set("toJSON",{getters:true});
