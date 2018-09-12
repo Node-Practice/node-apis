@@ -20,19 +20,34 @@ class RoleController {
             name:role_Name
         };
         const role = new RoleModel(newRole);
-        // RoleModel.init().then(() =>{
-        //     RoleModel.create(role).then(role =>{
-        //         console.log(role);
-        //         return res.status(200).json(role);
-        //     });
-        // }).catch(err =>{
-        //     console.log(err);
-        // });
         await role.save().then((role) =>{
             return res.status(200).json(role);
         }).catch(err =>{
             return res.status(500).send('添加权限失败,失败原因: ' + err);
         });
     }
+
+    async update(req,res,next){
+        const roleId = req.params.roleId;
+        if(!roleId){
+            return next(createError(400,"请提供roleID"));
+        }
+        const role_Name = req.body.name;
+        if(!role_Name){
+            return next(createError(400,"请填写权限名称"));
+        }
+
+        RoleModel.findOneAndUpdate({id:roleId},{$set:{name:role_Name}})
+        .then(role =>{
+            return res.status(200).json(role);
+        }).catch(err => {
+            
+        })
+
+
+
+    }
+
+
 }
 module.exports = new RoleController();
