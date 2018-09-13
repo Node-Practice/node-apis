@@ -1,5 +1,5 @@
 'use strict';
-const  UserModel = require('../models/userModel');
+const UserModel = require('../models').User;
 const createError = require('http-errors');
 
 class UserController {

@@ -9,6 +9,10 @@ const roleSchema = new Schema({
             unique:true,
             sparse: true
         },
+        isDeleted:{
+            type: Boolean,
+            default: false
+        }
     },
     {
         versionKey: false,//去掉版本锁 __v0
@@ -25,7 +29,6 @@ roleSchema.pre('save', function (next) {
         if(count && count > 0){
             console.log(count);
             next(new Error("请不要添加重复的权限"));
-            // throw new Error("请不要添加重复的权限");
         }else {
             next();
         }

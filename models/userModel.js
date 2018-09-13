@@ -34,12 +34,4 @@ const userModel = mongoose.model('user', userSchema);
 userSchema.set("toJSON",{getters:true});
 userSchema.set("toObject",{getters:true});
 
-
-
-
-
-
-
-
-
-export default userModel;
+module.exports = userModel;

@@ -6,17 +6,9 @@ const logger = require('morgan');
 const body_parser = require('body-parser');
 const multer = require('multer');
 
-const mongoose = require('mongoose');
-mongoose.Promise = global.Promise;
+
 const config = require('./configs/app.settings');
-mongoose.connect(config.dbUrl,config.dbOptions)
-    .then(() =>{
-        console.log('已成功连接上数据库');
-    })
-    .catch((err) =>{
-        console.log((err));
-        process.exit(1);
-    });
+require('./models');
 
 // const indexRouter = require('./routes/index');
 // const usersRouter = require('./routes/users');
