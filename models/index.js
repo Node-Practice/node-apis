@@ -14,5 +14,6 @@ mongoose.connect(config.dbUrl,config.dbOptions)
 
 module.exports = {
     Role:require('./roleModel'),
-    User:require('./userModel')
+    User:require('./userModel'),
+    Project:require('./projectModel')
 };

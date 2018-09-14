@@ -4,6 +4,9 @@ const createError = require('http-errors');
 
 class UserController {
     async add(req,res,next){
+        const newUser = req.body;
+        
+
 
     }
 }

@@ -1,6 +1,7 @@
 'use strict';
 const mongoose = require('mongoose');
 const Schema = mongoose.Schema;
+const RoleModel = require('../models').Role;
 const userSchema = new Schema({
     name: { // 姓名
         type: String,
@@ -16,10 +17,10 @@ const userSchema = new Schema({
     birthday: { // 生日
         type: Date,
     },
-    roles: { // 用户权限
-        type: Array,
-        default: [{type:Schema.Types.ObjectId, ref:'roleModel'}],
-    },
+    roles: [{ // 用户权限
+        type:Schema.Types.ObjectId, 
+        ref:'roleModel'
+    }],
     status: { // 用户状态
         type: Number,
         default: 0, // 0: 可用，1: 删除
@@ -33,5 +34,18 @@ const userModel = mongoose.model('user', userSchema);
 // 可以调用ToJson方法转换为JSON字符串
 userSchema.set("toJSON",{getters:true});
 userSchema.set("toObject",{getters:true});
+
+userSchema.pre('save',function(next) {
+    if(this.roles == null || this.roles.length <= 0){
+        RoleModel.findOne({name:'user',isDeleted:false}).then(role => {
+            if(!role){
+                throw new Error("请先添加用户的默认权限: 'user'");
+            }
+            this.roles = [].push(role);
+        })
+    }
+})
+
+
 
 module.exports = userModel;
