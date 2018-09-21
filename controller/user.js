@@ -29,7 +29,26 @@ class UserController {
             return res.status(500).json(err);
         });
     }
+
     /**
+     * 更新用户信息
+     * @param {*} req 
+     * @param {*} res 
+     * @param {*} next 
+     */
+    async update(req,res,next){
+
+    }
+    /**
+     * 删除用户信息
+     * @param {*} req 
+     * @param {*} res 
+     * @param {*} next 
+     */
+    async delete(req,res,next){
+
+    }
+        /**
      * 获得所有用户
      * @param {*} req req.query.currentPage, req.query.pageSize,  req.query.sortName req.query.sortOrder: desc
      * @param {*} res 
@@ -58,9 +77,17 @@ class UserController {
         }).catch(err => {
             console.log(err);
             return next(500, err);
-        })
-    }
+        });
+    } 
+    /**
+     * 根据用户ID获得用户信息
+     * @param {*} req 
+     * @param {*} res 
+     * @param {*} next 
+     */
+    async getUserById(req,res,next){
 
+    }
 
 
 }
