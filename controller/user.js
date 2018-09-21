@@ -7,7 +7,6 @@ class UserController {
         const newUser = req.body;
         
 
-
     }
 }
 
