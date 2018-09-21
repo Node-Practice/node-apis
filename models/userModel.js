@@ -17,10 +17,10 @@ const userSchema = new Schema({
     birthday: { // 生日
         type: Date,
     },
-    roles: [{ // 用户权限
+    role: { // 用户权限
         type:Schema.Types.ObjectId, 
-        ref:'roleModel'
-    }],
+        ref:'role'
+    },
     status: { // 用户状态
         type: Number,
         default: 0, // 0: 可用，1: 删除
@@ -36,12 +36,12 @@ userSchema.set("toJSON",{getters:true});
 userSchema.set("toObject",{getters:true});
 
 userSchema.pre('save',function(next) {
-    if(this.roles == null || this.roles.length <= 0){
+    if(this.role == null){
         RoleModel.findOne({name:'user',isDeleted:false}).then(role => {
             if(!role){
                 throw new Error("请先添加用户的默认权限: 'user'");
             }
-            this.roles = [].push(role);
+            this.role = role;
         })
     }
 })
